@@ -1,0 +1,21 @@
+{
+  "config": {
+    "nombre": "Hector",
+    "lema": "Ropa y tenis de marca, pieza por pieza.",
+    "whatsapp": "",
+    "messenger": "",
+    "aviso": "",
+    "entrega": "Entregas en puntos públicos acordados por mensaje.",
+    "pagos": "Efectivo o transferencia al momento de la entrega."
+  },
+  "productos": [
+    {"id": 1, "nombre": "Polo clásica azul marino", "descripcion": "Polo de piqué, corte regular. Sin detalles, lista para usar.", "precio": 380, "precio_antes": 520, "categoria": "Ropa", "marca": "Polo Ralph Lauren", "talla": "M", "condicion": "seminuevo", "estado": "disponible", "destacado": true, "miniatura": "", "creado": "2026-11-13T18:00:00Z", "nfotos": 0},
+    {"id": 2, "nombre": "Sudadera con capucha gris", "descripcion": "Felpa gruesa, logo bordado al frente.", "precio": 450, "precio_antes": null, "categoria": "Ropa", "marca": "Tommy Hilfiger", "talla": "L", "condicion": "seminuevo", "estado": "disponible", "destacado": false, "miniatura": "", "creado": "2026-11-12T18:00:00Z", "nfotos": 0},
+    {"id": 3, "nombre": "Tenis para correr negros", "descripcion": "Suela con poco uso, plantilla original.", "precio": 690, "precio_antes": 850, "categoria": "Tenis", "marca": "Nike", "talla": "27 MX", "condicion": "seminuevo", "estado": "apartado", "destacado": false, "miniatura": "", "creado": "2026-11-11T18:00:00Z", "nfotos": 0},
+    {"id": 4, "nombre": "Camisa oxford a rayas", "descripcion": "Manga larga, algodón. Nueva con etiqueta.", "precio": 420, "precio_antes": null, "categoria": "Ropa", "marca": "Tommy Hilfiger", "talla": "S", "condicion": "nuevo", "estado": "disponible", "destacado": false, "miniatura": "", "creado": "2026-11-10T18:00:00Z", "nfotos": 0},
+    {"id": 5, "nombre": "Gorra bordada beige", "descripcion": "Ajustable, visera curva.", "precio": 180, "precio_antes": null, "categoria": "Accesorios", "marca": "Polo Ralph Lauren", "talla": "Unitalla", "condicion": "nuevo", "estado": "disponible", "destacado": false, "miniatura": "", "creado": "2026-11-09T18:00:00Z", "nfotos": 0},
+    {"id": 6, "nombre": "Tenis casuales blancos", "descripcion": "Piel sintética, cordones nuevos.", "precio": 560, "precio_antes": null, "categoria": "Tenis", "marca": "Adidas", "talla": "26 MX", "condicion": "seminuevo", "estado": "disponible", "destacado": false, "miniatura": "", "creado": "2026-11-08T18:00:00Z", "nfotos": 0},
+    {"id": 7, "nombre": "Chamarra de mezclilla", "descripcion": "Corte clásico, lavado medio.", "precio": 520, "precio_antes": 650, "categoria": "Ropa", "marca": "Levi's", "talla": "M", "condicion": "usado", "estado": "vendido", "destacado": false, "miniatura": "", "creado": "2026-11-07T18:00:00Z", "nfotos": 0},
+    {"id": 8, "nombre": "Set de labiales mate", "descripcion": "Tres tonos, sellados.", "precio": 150, "precio_antes": null, "categoria": "Belleza", "marca": "", "talla": "", "condicion": "nuevo", "estado": "disponible", "destacado": false, "miniatura": "", "creado": "2026-11-06T18:00:00Z", "nfotos": 0}
+  ]
+}

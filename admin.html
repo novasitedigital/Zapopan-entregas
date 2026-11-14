@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' https://mnieoqxfezvmkvbpaouk.supabase.co; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>Panel · Catálogo</title>
+<link rel="icon" href="img/icono.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/estilos.css">
+<link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="panel">
+
+<!-- Entrada -->
+<main class="entrada" id="v-entrada" hidden>
+  <form class="entrada__caja" id="f-entrada" autocomplete="off">
+    <h1>Panel del catálogo</h1>
+    <p id="entrada-ayuda">Entra con tu contraseña.</p>
+    <label class="campo">Contraseña<input id="e-pass" type="password" autocomplete="current-password" maxlength="200" required></label>
+    <p class="error" id="e-error" role="alert" hidden></p>
+    <button class="btn btn--lleno btn--ancho" id="e-btn" type="submit">Entrar</button>
+  </form>
+</main>
+
+<!-- Base sin instalar -->
+<main class="entrada" id="v-instalar" hidden>
+  <div class="entrada__caja">
+    <h1>Falta activar la base de datos</h1>
+    <p>El panel funciona en cuanto corras el archivo <b>instalar-base.sql</b> en Supabase: abre tu proyecto, entra a SQL Editor, pega todo el archivo y toca Run. Después recarga esta página.</p>
+    <a class="btn btn--ancho" href="./">Ver el catálogo de muestra</a>
+  </div>
+</main>
+
+<!-- Cambio obligatorio de contraseña -->
+<main class="entrada" id="v-cambio" hidden>
+  <form class="entrada__caja" id="f-cambio" autocomplete="off">
+    <h1>Crea tu contraseña</h1>
+    <p>La contraseña temporal solo sirve para esta primera entrada. Elige una de al menos 10 caracteres que no uses en otro lado.</p>
+    <label class="campo">Contraseña temporal<input id="c-actual" type="password" autocomplete="current-password" maxlength="200" required></label>
+    <label class="campo">Nueva contraseña<input id="c-nueva" type="password" autocomplete="new-password" minlength="10" maxlength="200" required></label>
+    <label class="campo">Repite la nueva<input id="c-repite" type="password" autocomplete="new-password" minlength="10" maxlength="200" required></label>
+    <p class="error" id="c-error" role="alert" hidden></p>
+    <button class="btn btn--lleno btn--ancho" type="submit">Guardar contraseña</button>
+  </form>
+</main>
+
+<!-- Panel -->
+<div id="v-panel" hidden>
+  <header class="barra">
+    <div class="barra__fila">
+      <span class="marca">Panel</span>
+      <a class="pastilla" href="./" target="_blank" rel="noopener">Ver catálogo</a>
+      <button class="pastilla" id="btn-salir" type="button">Salir</button>
+    </div>
+    <nav class="pestanas contenedor" aria-label="Secciones">
+      <button type="button" data-pest="inventario" aria-pressed="true">Inventario</button>
+      <button type="button" data-pest="ajustes" aria-pressed="false">Ajustes</button>
+      <button type="button" data-pest="seguridad" aria-pressed="false">Seguridad</button>
+    </nav>
+  </header>
+
+  <main class="contenedor">
+    <section id="p-inventario">
+      <div class="cifras" id="cifras"></div>
+      <div class="herramientas">
+        <button class="btn btn--sticker" id="btn-nuevo" type="button">Agregar producto</button>
+        <input id="a-q" type="search" placeholder="Buscar en inventario" maxlength="60" aria-label="Buscar en inventario">
+        <select id="a-estado" aria-label="Filtrar por estado">
+          <option value="">Todos los estados</option><option value="disponible">Disponibles</option><option value="apartado">Apartados</option><option value="vendido">Vendidos</option><option value="oculto">Ocultos</option>
+        </select>
+      </div>
+      <div id="inventario"></div>
+    </section>
+
+    <section id="p-ajustes" hidden>
+      <form class="formulario" id="f-ajustes">
+        <h2>Datos del catálogo</h2>
+        <label class="campo">Nombre del catálogo<input id="j-nombre" maxlength="60" required></label>
+        <label class="campo">Frase de portada<input id="j-lema" maxlength="140"></label>
+        <label class="campo">Aviso en la parte de arriba<input id="j-aviso" maxlength="140"><small>Ejemplo: “Llegó paca nueva este sábado”. Déjalo vacío para quitarlo.</small></label>
+        <h2>Contacto</h2>
+        <label class="campo">WhatsApp<input id="j-whatsapp" inputmode="numeric" maxlength="15" placeholder="5213312345678"><small>Solo números, con lada de país. Si lo dejas vacío, tu número no aparece en ningún lado y el cliente copia el mensaje para mandarlo por Messenger.</small></label>
+        <label class="campo">Enlace de Messenger<input id="j-messenger" type="url" maxlength="200" placeholder="https://m.me/tu.pagina"><small>Opcional. Se usa cuando no hay WhatsApp.</small></label>
+        <h2>Entrega y pago</h2>
+        <label class="campo">Entrega<textarea id="j-entrega" maxlength="300"></textarea></label>
+        <label class="campo">Pago<textarea id="j-pagos" maxlength="300"></textarea></label>
+        <button class="btn btn--lleno" type="submit">Guardar ajustes</button>
+      </form>
+    </section>
+
+    <section id="p-seguridad" hidden>
+      <form class="formulario" id="f-pass" autocomplete="off">
+        <h2>Cambiar contraseña</h2>
+        <label class="campo">Contraseña actual<input id="s-actual" type="password" autocomplete="current-password" maxlength="200" required></label>
+        <label class="campo">Nueva contraseña<input id="s-nueva" type="password" autocomplete="new-password" minlength="10" maxlength="200" required></label>
+        <label class="campo">Repite la nueva<input id="s-repite" type="password" autocomplete="new-password" minlength="10" maxlength="200" required></label>
+        <button class="btn btn--lleno" type="submit">Cambiar contraseña</button>
+        <p class="nota">Al cambiarla se cierran las demás sesiones abiertas. La sesión se cierra sola a los 30 minutos sin uso.</p>
+      </form>
+      <div class="formulario">
+        <h2>Respaldo</h2>
+        <p class="nota">Descarga la lista completa de productos (sin fotos) por si algún día la necesitas.</p>
+        <button class="btn" id="btn-respaldo" type="button">Descargar respaldo</button>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- Editor de producto -->
+<dialog id="dlg-editor" aria-labelledby="ed-titulo">
+  <form id="f-editor" novalidate>
+    <div class="ventana__cabeza">
+      <h2 id="ed-titulo">Producto</h2>
+      <button class="cerrar" type="button" id="ed-cerrar" aria-label="Cerrar">✕</button>
+    </div>
+    <div class="ventana__cuerpo">
+      <div>
+        <div class="campo">Fotos <small>Hasta 8. La primera es la portada. Se comprimen solas.</small></div>
+        <div class="fotos" id="ed-fotos"></div>
+        <input id="ed-archivo" type="file" accept="image/jpeg,image/png,image/webp" multiple hidden>
+      </div>
+      <label class="campo">Nombre<input id="ed-nombre" maxlength="120" required></label>
+      <div class="dos">
+        <label class="campo">Precio<input id="ed-precio" type="number" inputmode="decimal" min="0" max="999999" step="1" required></label>
+        <label class="campo">Precio anterior<input id="ed-antes" type="number" inputmode="decimal" min="0" max="999999" step="1"><small>Opcional: muestra la rebaja.</small></label>
+      </div>
+      <div class="dos">
+        <label class="campo">Categoría<input id="ed-categoria" list="lista-cats" maxlength="40" required></label>
+        <label class="campo">Marca<input id="ed-marca" list="lista-marcas" maxlength="60"></label>
+      </div>
+      <div class="dos">
+        <label class="campo">Talla<input id="ed-talla" maxlength="30"></label>
+        <label class="campo">Condición<select id="ed-condicion"><option value="nuevo">Nuevo</option><option value="seminuevo">Seminuevo</option><option value="usado">Usado</option></select></label>
+      </div>
+      <label class="campo">Descripción<textarea id="ed-descripcion" maxlength="2000"></textarea></label>
+      <div class="dos">
+        <label class="campo">Estado<select id="ed-estado"><option value="disponible">Disponible</option><option value="apartado">Apartado</option><option value="vendido">Vendido</option><option value="oculto">Oculto (no sale en el catálogo)</option></select></label>
+        <label class="marcar"><input id="ed-destacado" type="checkbox"> Mostrar primero en el catálogo</label>
+      </div>
+      <fieldset class="privado">
+        <legend>Solo tú lo ves</legend>
+        <div class="dos">
+          <label class="campo">Lo que te costó<input id="ed-costo" type="number" inputmode="decimal" min="0" max="999999" step="1"></label>
+          <label class="campo">Notas<input id="ed-notas" maxlength="1000" placeholder="Paca, quién la apartó…"></label>
+        </div>
+      </fieldset>
+      <p class="error" id="ed-error" role="alert" hidden></p>
+      <div class="ed-acciones">
+        <button class="btn btn--lleno" id="ed-guardar" type="submit">Guardar producto</button>
+        <button class="btn" id="ed-texto" type="button">Texto para Marketplace</button>
+        <button class="btn btn--peligro" id="ed-eliminar" type="button">Eliminar</button>
+      </div>
+    </div>
+  </form>
+</dialog>
+
+<dialog id="dlg-texto" aria-labelledby="tx-titulo">
+  <div class="ventana__cabeza">
+    <h2 id="tx-titulo">Texto para Marketplace</h2>
+    <button class="cerrar" type="button" id="tx-cerrar" aria-label="Cerrar">✕</button>
+  </div>
+  <div class="ventana__cuerpo">
+    <label class="campo">Texto con etiquetas<textarea id="tx-area" rows="12"></textarea></label>
+    <button class="btn btn--lleno" id="tx-copiar" type="button">Copiar texto</button>
+  </div>
+</dialog>
+
+<datalist id="lista-cats"></datalist>
+<datalist id="lista-marcas"></datalist>
+
+<script src="js/config.js"></script>
+<script src="js/base.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

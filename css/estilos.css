@@ -1,0 +1,146 @@
+/* Catálogo Hector — estilos compartidos */
+@font-face{font-family:"Bricolage";src:url("../fuentes/bricolage.woff2") format("woff2");font-weight:200 800;font-display:swap}
+@font-face{font-family:"Instrument";src:url("../fuentes/instrument.woff2") format("woff2");font-weight:400 700;font-display:swap}
+
+:root{
+  --tela:#F1F3F2; --papel:#FFFFFF; --tinta:#141B34; --tinta-2:#55607A; --linea:#D6DBE2;
+  --mezclilla:#2F4F9A; --sticker:#FFE23F; --sticker-tinta:#141B34;
+  --rojo:#C8321F; --verde:#17754B; --ambar:#8A5A00;
+  --radio:14px; --radio-ch:8px;
+  --titulo:"Bricolage","Arial Narrow",system-ui,sans-serif;
+  --texto:"Instrument",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:light dark;
+}
+@media (prefers-color-scheme:dark){
+  :root{--tela:#0F1428; --papel:#19203C; --tinta:#EEF1F7; --tinta-2:#A3ADC4; --linea:#2C3559;
+    --mezclilla:#8FAEFF; --rojo:#FF7A66; --verde:#5BD39B; --ambar:#F2C14E}
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--tela);color:var(--tinta);font:16px/1.5 var(--texto)}
+h1,h2,h3{font-family:var(--titulo);line-height:1.08;margin:0;letter-spacing:-.02em}
+p{margin:0}
+img{display:block;max-width:100%}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+[hidden]{display:none!important}
+:focus-visible{outline:3px solid var(--mezclilla);outline-offset:2px}
+.solo-lector{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+
+/* ---------- Botones y campos ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.45em;min-height:46px;padding:0 18px;
+  border-radius:999px;border:2px solid var(--tinta);background:transparent;font-weight:600;text-decoration:none;color:var(--tinta)}
+.btn--lleno{background:var(--tinta);color:var(--tela)}
+.btn--sticker{background:var(--sticker);color:var(--sticker-tinta);border-color:var(--sticker-tinta)}
+.btn--chico{min-height:36px;padding:0 13px;font-size:.88rem;border-width:1.5px}
+.btn--peligro{border-color:var(--rojo);color:var(--rojo)}
+.btn:disabled{opacity:.5;cursor:wait}
+.btn--ancho{width:100%}
+.campo{display:grid;gap:5px;font-size:.9rem;font-weight:600}
+.campo input,.campo select,.campo textarea,.buscador input{width:100%;min-height:46px;padding:10px 13px;border-radius:var(--radio-ch);
+  border:1.5px solid var(--linea);background:var(--papel);font-weight:400;font-size:1rem}
+.campo textarea{min-height:110px;resize:vertical}
+.campo small{font-weight:400;color:var(--tinta-2)}
+
+/* ---------- Barra superior ---------- */
+.barra{position:sticky;top:0;z-index:20;background:var(--tela);border-bottom:1.5px solid var(--tinta)}
+.barra__fila{max-width:1180px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:10px}
+.marca{font-family:var(--titulo);font-weight:800;font-size:1.45rem;letter-spacing:-.03em;margin-right:auto;color:inherit;text-decoration:none}
+.pastilla{display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:0 14px;border-radius:999px;border:1.5px solid var(--tinta);background:transparent;font-weight:600;font-size:.92rem}
+.pastilla[aria-pressed="true"]{background:var(--tinta);color:var(--tela)}
+.pastilla b{background:var(--sticker);color:var(--sticker-tinta);border-radius:999px;min-width:22px;padding:0 6px;text-align:center;font-size:.8rem}
+
+.aviso{background:var(--sticker);color:var(--sticker-tinta);text-align:center;padding:8px 16px;font-weight:600;font-size:.93rem}
+.aviso--demo{background:var(--tinta);color:var(--tela)}
+
+/* ---------- Portada ---------- */
+.contenedor{max-width:1180px;margin:0 auto;padding:0 16px}
+.portada{padding:26px 0 14px;display:grid;gap:8px}
+.portada h1{font-size:clamp(2.3rem,9vw,4.6rem);font-weight:800;max-width:14ch}
+.portada p{color:var(--tinta-2);max-width:52ch;font-size:1.05rem}
+.conteo{font-family:var(--titulo);font-weight:600;color:var(--tinta)!important}
+
+/* ---------- Filtros ---------- */
+.filtros{position:sticky;top:61px;z-index:15;background:var(--tela);padding:10px 0 8px;display:grid;gap:8px}
+.buscador{display:flex;gap:8px}
+.buscador input{border-radius:999px;border-color:var(--tinta);padding-left:18px}
+.chips{display:flex;gap:7px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;min-height:36px;padding:0 14px;border-radius:999px;border:1.5px solid var(--linea);background:var(--papel);font-weight:600;font-size:.9rem;white-space:nowrap}
+.chip[aria-pressed="true"]{background:var(--tinta);border-color:var(--tinta);color:var(--tela)}
+.afinar{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;padding:12px;border-radius:var(--radio);background:var(--papel);border:1.5px solid var(--linea)}
+@media(min-width:720px){.afinar{grid-template-columns:repeat(4,1fr)}}
+
+/* ---------- Cuadrícula ---------- */
+.rejilla{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 12px;padding:14px 0 40px}
+@media(min-width:640px){.rejilla{grid-template-columns:repeat(3,minmax(0,1fr));gap:28px 18px}}
+@media(min-width:960px){.rejilla{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.pieza{position:relative;display:grid;gap:4px;align-content:start}
+.pieza__abrir{all:unset;cursor:pointer;display:grid;gap:4px}
+.pieza__abrir:focus-visible{outline:3px solid var(--mezclilla);outline-offset:3px;border-radius:var(--radio)}
+.foto{position:relative;aspect-ratio:4/5;border-radius:var(--radio);overflow:hidden;background:var(--papel);border:1.5px solid var(--linea)}
+.foto img{width:100%;height:100%;object-fit:cover}
+.foto__vacia{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--titulo);font-weight:800;font-size:4.5rem;color:var(--linea)}
+/* El precio va como etiqueta fosforescente de tianguis: es la firma del catálogo */
+.etiqueta{position:absolute;left:-4px;bottom:12px;background:var(--sticker);color:var(--sticker-tinta);font-family:var(--titulo);font-weight:800;
+  font-size:1.2rem;line-height:1;padding:7px 11px 7px 12px;border-radius:3px 9px 9px 3px;transform:rotate(-3deg);box-shadow:1px 2px 0 var(--sticker-tinta)}
+.etiqueta s{display:block;font-size:.72rem;font-weight:600;opacity:.7}
+.sello{position:absolute;top:10px;right:10px;padding:3px 9px;border-radius:999px;font-size:.76rem;font-weight:700;background:var(--papel);color:var(--tinta);border:1.5px solid var(--tinta)}
+.sello--apartado{background:var(--tinta);color:var(--tela)}
+.sello--vendido{background:var(--rojo);color:#fff;border-color:var(--rojo)}
+.pieza--fuera .foto img,.pieza--fuera .foto__vacia{opacity:.45;filter:grayscale(1)}
+.pieza--fuera .etiqueta{background:var(--papel);color:var(--tinta-2);box-shadow:none;border:1.5px solid var(--linea)}
+.pieza h3{font-size:1.02rem;font-weight:700;margin-top:6px;letter-spacing:-.01em;line-height:1.2;font-family:var(--texto)}
+.pieza__dato{color:var(--tinta-2);font-size:.88rem}
+.corazon{position:absolute;top:8px;left:8px;width:38px;height:38px;border-radius:50%;border:1.5px solid var(--tinta);background:var(--papel);font-size:1.05rem;line-height:1;display:grid;place-items:center;color:var(--tinta)}
+.corazon[aria-pressed="true"]{background:var(--rojo);border-color:var(--rojo);color:#fff}
+
+.vacio{grid-column:1/-1;padding:46px 12px;text-align:center;display:grid;gap:12px;justify-items:center}
+.vacio h2{font-size:1.5rem}
+.vacio p{color:var(--tinta-2);max-width:40ch}
+
+/* ---------- Ventanas ---------- */
+dialog{border:0;padding:0;background:var(--tela);color:var(--tinta);width:min(100%,860px);max-width:100%;max-height:100dvh;border-radius:var(--radio) var(--radio) 0 0;margin:auto auto 0}
+dialog::backdrop{background:rgb(10 14 30/.62)}
+@media(min-width:720px){dialog{border-radius:var(--radio);margin:auto;max-height:92dvh}}
+.ventana__cabeza{position:sticky;top:0;z-index:2;display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--tela);border-bottom:1.5px solid var(--linea)}
+.ventana__cabeza h2{font-size:1.15rem;margin-right:auto}
+.cerrar{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--tinta);background:transparent;font-size:1.1rem;line-height:1}
+.ventana__cuerpo{padding:16px;display:grid;gap:16px}
+
+.detalle{display:grid;gap:18px}
+@media(min-width:720px){.detalle{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:start}}
+.galeria{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:8px;border-radius:var(--radio);scrollbar-width:thin}
+.galeria .foto{flex:0 0 100%;scroll-snap-align:center}
+.galeria:has(.foto:nth-child(2)) .foto{flex-basis:88%}
+.detalle__info{display:grid;gap:12px;align-content:start}
+.detalle__info h2{font-size:clamp(1.6rem,5vw,2.2rem);font-weight:800}
+.precio{font-family:var(--titulo);font-weight:800;font-size:2.1rem;line-height:1;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.precio s{font-size:1.05rem;font-weight:500;color:var(--tinta-2)}
+.precio em{font-style:normal;font-size:.85rem;font-family:var(--texto);background:var(--sticker);color:var(--sticker-tinta);padding:3px 8px;border-radius:999px}
+.ficha{display:grid;grid-template-columns:auto 1fr;gap:4px 16px;margin:0;font-size:.95rem}
+.ficha dt{color:var(--tinta-2)}
+.ficha dd{margin:0;font-weight:600}
+.descripcion{white-space:pre-line;color:var(--tinta)}
+.acciones{display:grid;gap:8px}
+.estado-nota{padding:10px 12px;border-radius:var(--radio-ch);border:1.5px solid var(--linea);background:var(--papel);font-size:.93rem}
+
+.renglon{display:grid;grid-template-columns:64px 1fr auto;gap:12px;align-items:center;padding:8px 0;border-bottom:1px solid var(--linea)}
+.renglon .foto{aspect-ratio:1;border-radius:var(--radio-ch)}
+.renglon .foto__vacia{font-size:1.6rem}
+.renglon strong{display:block;line-height:1.2}
+.renglon span{color:var(--tinta-2);font-size:.88rem}
+.total{display:flex;justify-content:space-between;font-family:var(--titulo);font-weight:800;font-size:1.3rem}
+
+/* ---------- Pie ---------- */
+.pie{border-top:1.5px solid var(--tinta);padding:26px 0 90px}
+.pie__rejilla{display:grid;gap:20px}
+@media(min-width:720px){.pie__rejilla{grid-template-columns:1fr 1fr 1fr}}
+.pie h2{font-size:1.1rem;margin-bottom:6px}
+.pie p{color:var(--tinta-2);font-size:.95rem}
+
+.brindis{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:60;background:var(--tinta);color:var(--tela);padding:11px 18px;border-radius:999px;font-weight:600;font-size:.92rem;max-width:calc(100% - 32px);text-align:center}
+@media (prefers-reduced-motion:no-preference){
+  dialog[open]{animation:subir .22s ease-out}
+  @keyframes subir{from{transform:translateY(18px);opacity:0}}
+}

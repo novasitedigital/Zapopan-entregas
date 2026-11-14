@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://mnieoqxfezvmkvbpaouk.supabase.co; base-uri 'none'; form-action 'none'; manifest-src 'self'">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0F1428" media="(prefers-color-scheme: dark)">
+<title>Hector · Catálogo</title>
+<meta name="description" content="Ropa y tenis de marca, pieza por pieza. Revisa qué hay disponible y aparta por mensaje.">
+<meta property="og:title" content="Hector · Catálogo">
+<meta property="og:description" content="Ropa y tenis de marca, pieza por pieza.">
+<link rel="icon" href="img/icono.svg" type="image/svg+xml">
+<link rel="preload" href="fuentes/bricolage.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+<div id="aviso-demo" class="aviso aviso--demo" hidden>Vista de muestra: estos productos son de ejemplo.</div>
+<div id="aviso" class="aviso" hidden></div>
+
+<header class="barra">
+  <div class="barra__fila">
+    <a class="marca" id="marca" href="./">Hector</a>
+    <button class="pastilla" id="btn-favs" type="button" aria-pressed="false">♥ <span class="solo-lector">Ver solo favoritos</span><b id="n-favs">0</b></button>
+    <button class="pastilla" id="btn-lista" type="button">Mi lista <b id="n-lista">0</b></button>
+  </div>
+</header>
+
+<main class="contenedor">
+  <section class="portada">
+    <h1 id="titulo">Hector</h1>
+    <p id="lema">Ropa y tenis de marca, pieza por pieza.</p>
+    <p class="conteo" id="conteo" aria-live="polite">Cargando catálogo…</p>
+  </section>
+
+  <section class="filtros" aria-label="Buscar y filtrar">
+    <div class="buscador">
+      <label class="solo-lector" for="q">Buscar</label>
+      <input id="q" type="search" placeholder="Busca marca, prenda o talla" autocomplete="off" maxlength="60">
+      <button class="pastilla" id="btn-afinar" type="button" aria-expanded="false" aria-controls="afinar">Filtros</button>
+    </div>
+    <div class="chips" id="chips" role="group" aria-label="Categorías"></div>
+    <div class="afinar" id="afinar" hidden>
+      <label class="campo">Talla<select id="f-talla"></select></label>
+      <label class="campo">Marca<select id="f-marca"></select></label>
+      <label class="campo">Condición<select id="f-cond">
+        <option value="">Todas</option><option value="nuevo">Nuevo</option><option value="seminuevo">Seminuevo</option><option value="usado">Usado</option>
+      </select></label>
+      <label class="campo">Ordenar<select id="f-orden">
+        <option value="nuevo">Lo más nuevo</option><option value="menor">Precio: menor a mayor</option><option value="mayor">Precio: mayor a menor</option>
+      </select></label>
+    </div>
+  </section>
+
+  <section class="rejilla" id="rejilla" aria-label="Productos"></section>
+</main>
+
+<footer class="pie">
+  <div class="contenedor pie__rejilla">
+    <div><h2>Entrega</h2><p id="pie-entrega"></p></div>
+    <div><h2>Pago</h2><p id="pie-pagos"></p></div>
+    <div><h2>¿Dudas?</h2><p>Abre cualquier pieza y toca “Preguntar por esta pieza”. Cada prenda es única: si dice apartada, alguien ya la pidió.</p></div>
+  </div>
+</footer>
+
+<dialog id="dlg-pieza" aria-labelledby="dlg-pieza-t">
+  <div class="ventana__cabeza">
+    <h2 id="dlg-pieza-t">Detalle</h2>
+    <button class="btn btn--chico" id="btn-compartir" type="button">Compartir</button>
+    <button class="cerrar" type="button" data-cerrar aria-label="Cerrar">✕</button>
+  </div>
+  <div class="ventana__cuerpo" id="pieza-cuerpo"></div>
+</dialog>
+
+<dialog id="dlg-lista" aria-labelledby="dlg-lista-t">
+  <div class="ventana__cabeza">
+    <h2 id="dlg-lista-t">Mi lista</h2>
+    <button class="cerrar" type="button" data-cerrar aria-label="Cerrar">✕</button>
+  </div>
+  <div class="ventana__cuerpo" id="lista-cuerpo"></div>
+</dialog>
+
+<script src="js/config.js"></script>
+<script src="js/base.js"></script>
+<script src="js/catalogo.js"></script>
+</body>
+</html>
